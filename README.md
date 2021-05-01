@@ -1,3 +1,6 @@
-# Simple Worldbuilding System
+# Mistborn VTT
 
-A simple game system for Foundry VTT which allows for flexible definition of Actors and Items to assist with worldbuilding or for running games which do not have a more complete system implementation available.
+Custom and unnoficial Foundry VTT system for Crafty Game's Mistborn Adventure Game.
+The system here implements the basics of mistborn but with custom house rules.
+Probably not what you are looking for.
+Use at your own risk.

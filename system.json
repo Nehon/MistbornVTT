@@ -22,8 +22,8 @@
     "gridUnits": "m",
     "primaryTokenAttribute": "resiliance.health",
     "secondaryTokenAttribute": "resilience.willpower",
-    "url": "https://your/hosted/system/repo/",
-    "manifest": "https://your/hosted/system/repo/system.json",
-    "download": "https://your/packaged/download/archive.zip",
+    "url": "https://https://github.com/Nehon/MistbornVTT",
+    "manifest": "https://https://github.com/Nehon/MistbornVTT/system.json",
+    "download": "https://https://github.com/Nehon/MistbornVTT/download/archive.zip",
     "license": "licence.txt"
 }
