@@ -20,10 +20,10 @@
     "socket": false,    
     "gridDistance": 1,
     "gridUnits": "m",
-    "primaryTokenAttribute": "resiliance.health",
-    "secondaryTokenAttribute": "resilience.willpower",
+    "primaryTokenAttribute": "resiliances.health",
+    "secondaryTokenAttribute": "resiliences.willpower",
     "url": "https://https://github.com/Nehon/MistbornVTT",
-    "manifest": "https://https://github.com/Nehon/MistbornVTT/system.json",
-    "download": "https://https://github.com/Nehon/MistbornVTT/download/archive.zip",
+    "manifest": "https://raw.githubusercontent.com/Nehon/MistbornVTT/master/system.json",
+    "download": "https://github.com/Nehon/MistbornVTT/raw/master/download/archive.zip",
     "license": "licence.txt"
 }
