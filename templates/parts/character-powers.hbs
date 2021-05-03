@@ -1,0 +1,45 @@
+<section class="powers">
+    <ol class="powers-list">
+        <li class="header flexrow">
+          <div class="center flex4">Metal</div>
+          <div class="center flex4">Type</div>
+          <div class="center flex4">Rating</div>
+          <div class="flex1"></div>          
+        
+        </li>
+        {{#each data.powers as |power key|}}
+        <li class="power flexrow" data-power="{{key}}">
+            <div class="center flex4">
+              <select name="data.powers.{{@key}}.metal" data-type="String">
+              {{#select power.metal}}
+                  <option value="">None</option>
+                  <option value="steel">Steel</option>
+                  <option value="iron">Iron</option>
+                  <option value="tin">Tin</option>            
+                  <option value="pewter">Pewter</option>                              
+                  <option value="zinc">Zinc</option>
+                  <option value="brass">Brass</option>
+                  <option value="bronze">Bronze</option>
+                  <option value="copper">Copper</option>
+              {{/select}}
+              </select>              
+            </div>
+            <div class="center flex4">
+              <select name="data.powers.{{key}}.type" data-type="String">
+              {{#select power.type}}
+                  <option value="">None</option>
+                  <option value="a">Allomantic</option>
+                  <option value="f">Feruchemic</option>
+                  <option value="m">Mimicry</option>                  
+              {{/select}}
+              </select>              
+            </div>
+            <div class="center flex4">
+              <input type="number" style="max-width:35px" name="data.powers.{{key}}.rating" value="{{power.rating}}" placeholder="Rating">
+              <span class="icon rollable" data-dice="{{power.rating}}">a</span>
+            </div>            
+            <a class="attribute-control flex1 right" data-action="delete"><i class="fas fa-trash"></i></a>
+        </li>
+        {{/each}}
+    </ol>
+</section>

@@ -9,7 +9,7 @@
         </div>        
         <div class="header-fields">
             <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>  
-            {{log actor}}          
+            {{log actor}}
             <input id="concept" name="data.concept" type="text" value="{{actor.data.concept}}" placeholder="Concept" />
             <div class="center">
                 <input name="data.race" type="text" value="{{actor.data.race}}" placeholder="Race"/>/
@@ -31,11 +31,12 @@
     </nav>
 
     {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        {{!-- Biography Tab --}}
-        <div class="tab biography" data-group="primary" data-tab="traits">
-            {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+    <section class="sheet-body">       
+        <div class="tab" data-group="primary" data-tab="traits">
+            {{> "systems/mistborn/templates/parts/character-traits.hbs"}}            
+        </div>
+        <div class="tab" data-group="primary" data-tab="powers">
+            {{> "systems/mistborn/templates/parts/character-powers.hbs"}}            
         </div>
 
         {{!-- Owned Items Tab --}}

@@ -1,4 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
+import { MistRoll } from "./mist-roll.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -37,7 +38,7 @@ export class MistbornActorSheet extends ActorSheet {
     if ( !this.options.editable ) return;
 
     // Handle rollable items and attributes
-    html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
+    html.find(".rollable").on("click", this._onRoll.bind(this));
    
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
@@ -62,6 +63,34 @@ export class MistbornActorSheet extends ActorSheet {
       }, false);
     });
    
+  }
+
+  async _onRoll(event) {
+    let elem = $(event.currentTarget);
+    const dice = elem.data('dice')
+    const dialogContent = await renderTemplate("systems/mistborn/templates/chat/roll-dialog.hbs", {});
+
+    const d = new Dialog({
+          title: `Roll ${dice} dices`,
+          content: dialogContent,
+          buttons: {
+              no: {
+                  label: "Cancel", callback: () => {                      
+                  }
+              },
+              yes: { label: "Roll", callback: html => { 
+                  const diceBonus = html.find("#diceBonus").val();
+                  const freeNudges = html.find("#freeNudges").val();
+                   //let r = new Roll(button.data('roll'), this.actor.getRollData());
+                  let roll = new MistRoll(`${dice}+${diceBonus}.${freeNudges}`);
+                  roll.roll(this);
+              } }
+          },
+          close: ()=>{             
+          },
+          default: 'yes'
+      });     
+      d.render(true);
   }
 
   /* -------------------------------------------- */

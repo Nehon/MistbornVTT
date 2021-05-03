@@ -70,7 +70,7 @@
     }
 
     .stats{
-      margin-top: 10px;
+      margin-top: 15px;
       .column{
         width: 29%;
         
@@ -102,20 +102,26 @@
           border-bottom: 1px #999 solid;
           border-radius: none;
         }
-        .icon{
-          font-family: "SteelAlphabet", Arial;
-          margin: 2px;
-          border: 1px solid #999;
-          width: 21px;
-          height: 21px;
-          padding-right: 3px;
-          border-radius: 4px;
-          background: #ccd;
-          cursor: pointer;
-        }        
+          
       }
     }
   }
+  .powers{
+    select{
+      font-family: $font-primary;
+    }
+  }
+  .icon{
+    font-family: $font-special;
+    margin: 2px;
+    border: 1px solid #999;
+    width: 21px;
+    height: 21px;
+    padding-right: 3px;
+    border-radius: 4px;
+    background: #ccd;
+    cursor: pointer;
+  }     
 
   .resource {
     width: 50%;
@@ -143,6 +149,8 @@
     .item.active {
       text-decoration: underline;
       text-shadow: none;
+      font-size: 1.1em;
+      color: #500;
     }
   }
 

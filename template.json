@@ -35,12 +35,8 @@
     "healthSpent":0,
     "reputationSpent":0,
     "willpowerSpent": 0,
-    "traits":[
-        {"name":""}
-    ],
-    "burdens":[
-        {"name":""}
-    ],
+    "traits": "<p><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Drive:</strong>&nbsp;_____________<strong>&nbsp;</strong><br /><strong>&nbsp; &nbsp;Profession:</strong>&nbsp;_____________<strong>&nbsp;</strong></p><p><strong>&nbsp; &nbsp; Speciality:</strong> _____________</p><p><strong>&nbsp; &nbsp; &nbsp; &nbsp; Feature:</strong> _____________</p><p><strong>Personality:</strong>&nbsp;_____________</p><div>&nbsp;</div>",
+    "burdens": "",
     "powers":[
       {
         "type":"allomancy",
