@@ -1,0 +1,9 @@
+<div class="center">
+<div class="roll-result">{{_result}}<span class="nudges left">{{_nudges}} nudge{{#if (gt _nudges 1)}}s{{/if}}</span></div>
+</div>
+
+<div class="center">
+{{#each _results as |result key|}}
+    {{result.result}}{{#if (lt key ../_nbDices)}}&nbsp;-&nbsp;{{/if}}
+{{/each}}
+</div>

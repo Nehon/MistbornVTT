@@ -1,0 +1,19 @@
+
+.chat-message {
+  font-family: $font-primary; 
+  font-size:17px;
+}
+.roll-result{
+  font-size: 3em;
+  font-weight: bold;
+  position: relative; 
+  margin-top: -10px;
+  .nudges{
+    font-size: 0.4em;
+    position: absolute;
+    min-width: 100px;
+    top: 40px;
+    left: 23px;
+    font-style: italic;
+  }
+}

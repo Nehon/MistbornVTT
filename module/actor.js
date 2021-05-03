@@ -4,13 +4,11 @@ import { EntitySheetHelper } from "./helper.js";
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
  */
-export class SimpleActor extends Actor {
+export class MistbornActor extends Actor {
 
   /** @override */
   prepareData() {
-    super.prepareData();
-    this.data.data.groups = this.data.data.groups || {};
-    this.data.data.attributes = this.data.data.attributes || {};
+    super.prepareData();    
   }
 
   /* -------------------------------------------- */
@@ -18,30 +16,7 @@ export class SimpleActor extends Actor {
   /** @override */
   getRollData() {
     const data = super.getRollData();
-    const shorthand = game.settings.get("worldbuilding", "macroShorthand");
-    const formulaAttributes = [];
-    const itemAttributes = [];
-
-    // Handle formula attributes when the short syntax is disabled.
-    this._applyShorthand(data, formulaAttributes, shorthand);
-
-    // Map all items data using their slugified names
-    this._applyItems(data, itemAttributes, shorthand);
-
-    // Evaluate formula replacements on items.
-    this._applyItemsFormulaReplacements(data, itemAttributes, shorthand);
-
-    // Evaluate formula attributes after all other attributes have been handled, including items.
-    this._applyFormulaReplacements(data, formulaAttributes, shorthand);
-
-    // Remove the attributes if necessary.
-    if ( !!shorthand ) {
-      delete data.attributes;
-      delete data.attr;
-      delete data.abil;
-      delete data.groups;
-    }
-
+    
     return data;
   }
 

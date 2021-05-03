@@ -5,12 +5,12 @@
  */
 
 // Import Modules
-import { SimpleActor } from "./actor.js";
+import { MistbornActor } from "./actor.js";
 import { SimpleItemSheet } from "./item-sheet.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
+import { MistbornActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { createWorldbuildingMacro } from "./macro.js";
-
+import { createmistbornMacro } from "./macro.js";
+import { registerHandlebarsHelpers } from "./helpers.js";
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
@@ -19,7 +19,7 @@ import { createWorldbuildingMacro } from "./macro.js";
  * Init hook.
  */
 Hooks.once("init", async function() {
-  console.log(`Initializing Simple Worldbuilding System`);
+  console.log(`Initializing Simple mistborn System`);
 
   /**
    * Set an initiative formula for the system. This will be updated later.
@@ -30,22 +30,22 @@ Hooks.once("init", async function() {
     decimals: 2
   };
 
-  game.worldbuilding = {
-    SimpleActor,
-    createWorldbuildingMacro
+  game.mistborn = {
+    MistbornActor,
+    createmistbornMacro
   };
 
   // Define custom Entity classes
-  CONFIG.Actor.entityClass = SimpleActor;
+  CONFIG.Actor.entityClass = MistbornActor;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("worldbuilding", SimpleActorSheet, { makeDefault: true });
+  Actors.registerSheet("mistborn", MistbornActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("worldbuilding", SimpleItemSheet, { makeDefault: true });
+  Items.registerSheet("mistborn", SimpleItemSheet, { makeDefault: true });
 
   // Register system settings
-  game.settings.register("worldbuilding", "macroShorthand", {
+  game.settings.register("mistborn", "macroShorthand", {
     name: "SETTINGS.SimpleMacroShorthandN",
     hint: "SETTINGS.SimpleMacroShorthandL",
     scope: "world",
@@ -55,7 +55,7 @@ Hooks.once("init", async function() {
   });
 
   // Register initiative setting.
-  game.settings.register("worldbuilding", "initFormula", {
+  game.settings.register("mistborn", "initFormula", {
     name: "SETTINGS.SimpleInitFormulaN",
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
@@ -66,7 +66,7 @@ Hooks.once("init", async function() {
   });
 
   // Retrieve and assign the initiative formula setting.
-  const initFormula = game.settings.get("worldbuilding", "initFormula");
+  const initFormula = game.settings.get("mistborn", "initFormula");
   _simpleUpdateInit(initFormula);
 
   /**
@@ -101,12 +101,13 @@ Hooks.once("init", async function() {
 
   // Preload template partials.
   preloadHandlebarsTemplates();
+  registerHandlebarsHelpers();
 });
 
 /**
  * Macrobar hook.
  */
-Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot));
+Hooks.on("hotbarDrop", (bar, data, slot) => createmistbornMacro(data, slot));
 
 /**
  * Adds the actor template context menu.
@@ -118,11 +119,11 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     icon: '<i class="fas fa-stamp"></i>',
     condition: li => {
       const actor = game.actors.get(li.data("entityId"));
-      return !actor.getFlag("worldbuilding", "isTemplate");
+      return !actor.getFlag("mistborn", "isTemplate");
     },
     callback: li => {
       const actor = game.actors.get(li.data("entityId"));
-      actor.setFlag("worldbuilding", "isTemplate", true);
+      actor.setFlag("mistborn", "isTemplate", true);
     }
   });
 
@@ -132,11 +133,11 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     icon: '<i class="fas fa-times"></i>',
     condition: li => {
       const actor = game.actors.get(li.data("entityId"));
-      return actor.getFlag("worldbuilding", "isTemplate");
+      return actor.getFlag("mistborn", "isTemplate");
     },
     callback: li => {
       const actor = game.actors.get(li.data("entityId"));
-      actor.setFlag("worldbuilding", "isTemplate", false);
+      actor.setFlag("mistborn", "isTemplate", false);
     }
   });
 });
@@ -151,11 +152,11 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     icon: '<i class="fas fa-stamp"></i>',
     condition: li => {
       const item = game.items.get(li.data("entityId"));
-      return !item.getFlag("worldbuilding", "isTemplate");
+      return !item.getFlag("mistborn", "isTemplate");
     },
     callback: li => {
       const item = game.items.get(li.data("entityId"));
-      item.setFlag("worldbuilding", "isTemplate", true);
+      item.setFlag("mistborn", "isTemplate", true);
     }
   });
 
@@ -165,11 +166,11 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     icon: '<i class="fas fa-times"></i>',
     condition: li => {
       const item = game.items.get(li.data("entityId"));
-      return item.getFlag("worldbuilding", "isTemplate");
+      return item.getFlag("mistborn", "isTemplate");
     },
     callback: li => {
       const item = game.items.get(li.data("entityId"));
-      item.setFlag("worldbuilding", "isTemplate", false);
+      item.setFlag("mistborn", "isTemplate", false);
     }
   });
 });
@@ -199,11 +200,11 @@ async function _simpleDirectoryTemplates(collection, event) {
   // Retrieve the collection and find any available templates
   const entityCollection = collection.tabName === "actors" ? game.actors : game.items;
   const cls = collection.tabName === "actors" ? Actor : Item;
-  let templates = entityCollection.filter(a => a.getFlag("worldbuilding", "isTemplate"));
+  let templates = entityCollection.filter(a => a.getFlag("mistborn", "isTemplate"));
   let ent = game.i18n.localize(cls.config.label);
 
   // Setup default creation data
-  let type = collection.tabName === "actors" ? 'character' : 'item';
+  let type = collection.tabName === "actors" ? 'character' : 'prop';
   let createData = {
     name: `${game.i18n.localize("SIMPLE.New")} ${ent}`,
     type: type,
@@ -219,7 +220,7 @@ async function _simpleDirectoryTemplates(collection, event) {
 
   // Render the confirmation dialog window
   const templateData = {upper: ent, lower: ent.toLowerCase(), types: types};
-  const dlg = await renderTemplate(`systems/worldbuilding/templates/sidebar/entity-create.html`, templateData);
+  const dlg = await renderTemplate(`systems/mistborn/templates/sidebar/entity-create.html`, templateData);
   return Dialog.confirm({
     title: `${game.i18n.localize("SIMPLE.Create")} ${createData.name}`,
     content: dlg,
@@ -229,7 +230,7 @@ async function _simpleDirectoryTemplates(collection, event) {
       if ( template ) {
         createData = mergeObject(template.data, createData, {inplace: false});
         createData.type = template.data.type;
-        delete createData.flags.worldbuilding.isTemplate;
+        delete createData.flags.mistborn.isTemplate;
       }
       createData.name = form.name.value;
       return cls.create(createData, {renderSheet: true});

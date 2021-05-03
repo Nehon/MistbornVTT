@@ -180,7 +180,7 @@ export class EntitySheetHelper {
     const button = event.currentTarget;
     const label = button.closest(".attribute").querySelector(".attribute-label")?.value;
     const chatLabel = label ?? button.parentElement.querySelector(".attribute-key").value;
-    const shorthand = game.settings.get("worldbuilding", "macroShorthand");
+    const shorthand = game.settings.get("mistborn", "macroShorthand");
     const rollData = this.object.getRollData();
     let formula = button.closest(".attribute").querySelector(".attribute-value")?.value;
 

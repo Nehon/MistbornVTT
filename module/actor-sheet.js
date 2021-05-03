@@ -4,15 +4,15 @@ import { EntitySheetHelper } from "./helper.js";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class SimpleActorSheet extends ActorSheet {
+export class MistbornActorSheet extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["worldbuilding", "sheet", "actor"],
-      template: "systems/worldbuilding/templates/actor-sheet.html",
-      width: 600,
-      height: 600,
+      classes: ["mistborn", "sheet", "actor"],
+      template: "systems/mistborn/templates/actor-sheet.html",
+      width: 850,
+      height: 650,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
       scrollY: [".biography", ".items", ".attributes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
@@ -23,9 +23,7 @@ export class SimpleActorSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
-    EntitySheetHelper.getAttributeData(data);
-    data.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
+    const data = super.getData();    
     return data;
   }
 
@@ -40,8 +38,7 @@ export class SimpleActorSheet extends ActorSheet {
 
     // Handle rollable items and attributes
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
-    html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAttributeRoll.bind(this));
-
+   
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
@@ -64,12 +61,7 @@ export class SimpleActorSheet extends ActorSheet {
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
       }, false);
     });
-
-    // Add or Remove Attribute
-    html.find(".attributes").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
-
-    // Add attribute groups.
-    html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
+   
   }
 
   /* -------------------------------------------- */
@@ -94,8 +86,7 @@ export class SimpleActorSheet extends ActorSheet {
 
   /** @override */
   _updateObject(event, formData) {
-    formData = EntitySheetHelper.updateAttributes(formData, this);
-    formData = EntitySheetHelper.updateGroups(formData, this);
+
     return this.object.update(formData);
   }
 

@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'IMFellEnglishSC';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/IMFellEnglishSC-Regular.woff2');
+}
+
+@font-face {
+  font-family: 'SteelAlphabet';
+  font-style: normal;
+  src: url('../fonts/steelAlphabet-Aligned.ttf') format('truetype');
+}
+
+$font-primary: 'IMFellEnglishSC', Arial;
+$font-special: 'SteelAlphabet', Arial;
+

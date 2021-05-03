@@ -1,8 +1,9 @@
-.worldbuilding {
+.mistborn {
   .window-content {
     height: 100%;
     padding: 5px;
     overflow-y: hidden;
+    background: url(../images/bg-2.jpg) repeat;
   }
 
   form {
@@ -10,7 +11,7 @@
   }
 
   .sheet-header {
-    flex: 0 0 100px;
+    flex: 0 0 250px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -19,25 +20,99 @@
     margin-bottom: 10px;
 
     .profile-img {
-      flex: 0 0 100px;
-      height: 100px;
+      .character-header{
+        background-image: url(../images/logo.jpg);
+        height: 75px;
+        width: 200px;
+        background-position: center;
+        background-size: cover;
+        mix-blend-mode: multiply;
+      }
+      flex: 0 0 200px;
+      height: 250px;
       margin-right: 10px;
+      cursor: pointer;            
+      border: none;      
     }
 
     .header-fields {
       flex: 1;
-      height: 100px;
+      height: 250px;
+    }
+
+    #concept{
+      text-align: center;
+      margin-top: -23px;
     }
 
     h1.charname {
-      height: 50px;
+      height: 32px;
       padding: 0px;
       margin: 5px 0;
+      text-align: center;
       border-bottom: 0;
+      border: none;
+      background-color: unset;
+      
       input {
         width: 100%;
         height: 100%;
         margin: 0;
+        max-height: 30px;
+        border-radius: unset;
+        border-bottom: 1px solid #999;
+      }
+    }    
+
+    input {
+      border:none;
+      background-color: unset;      
+    }
+
+    .stats{
+      margin-top: 10px;
+      .column{
+        width: 29%;
+        
+        .flexrow{
+          margin-bottom: 5px;
+        }
+        .header{          
+          border-radius: 3px;
+          background-color: #CCD;
+          font-weight:bold;
+        }
+        .sub-header{
+          margin-bottom: 0;
+          height: 18px;
+          .indicator{              
+              color:#999
+          }
+        }
+        input{
+          min-width: 35px;
+          max-width: 35px;
+          border: 1px #999 solid;
+          border-radius: 3px;
+          font-size: 1.4em;
+          padding-bottom: 7px;
+        }
+        .input-spent{
+          border: none;
+          border-bottom: 1px #999 solid;
+          border-radius: none;
+        }
+        .icon{
+          font-family: "SteelAlphabet", Arial;
+          margin: 2px;
+          border: 1px solid #999;
+          width: 21px;
+          height: 21px;
+          padding-right: 3px;
+          border-radius: 4px;
+          background: #ccd;
+          cursor: pointer;
+        }        
       }
     }
   }
@@ -279,13 +354,13 @@
   }
 }
 
-.worldbuilding.sheet.actor {
+.mistborn.sheet.actor {
   min-width: 560px;
   min-height: 420px;
 }
 
 
-.worldbuilding.sheet.item {
+.mistborn.sheet.item {
   min-width: 460px;
   min-height: 400px;
 }

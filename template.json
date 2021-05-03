@@ -1,53 +1,40 @@
 {
 "Actor": {
-  "types": ["character"],
-  "templates": {
-    "base": {
-      "name": "",
-      "concept": "",
-      "race": "",
-      "sex":"",
-      "age":"",
-      "height":"",
-      "weight":"",
-      "crewName":"",
-      "cause":"",
-      "target":"",
-      "method":""
-    },
-    "attributes": {
-      "physique": 0,
-      "charm": 0,
-      "wits": 0
-    },
-    "standings": {
-      "resources": {
-          "value":0,
-          "max":0
-      },
-      "influence": {
-          "value":0,
-          "max":0
-      },
-      "spirit": {
-          "value":0,
-          "max":0
-      }      
-    },
-    "resiliences": {
-      "health": {
-          "value":0,
-          "max":0
-      },
-      "reputation": {
-          "value":0,
-          "max":0
-      },
-      "willpower": {
-          "value":0,
-          "max":0
-      }      
-    },
+  "types": ["character"], 
+  "character": {    
+    "tragedy": "",
+    "destiny":"",
+    "concept": "",
+    "race": "",
+    "sex":"",
+    "age":"",
+    "height":"",
+    "weight":"",
+    "crewName":"",
+    "cause":"",
+    "target":"",
+    "method":"",
+    "secretsKnown":[
+        {
+            "details":""
+        }
+    ],
+    "advancements":0,
+    "physique": 0,
+    "charm": 0,
+    "wits": 0,
+    "resources":0,          
+    "influence": 0,          
+    "spirit":0,
+    "health":0,
+    "reputation":0,
+    "willpower": 0,
+    "resourcesSpent":0,          
+    "influenceSpent": 0,          
+    "spiritSpent":0,
+    "healthSpent":0,
+    "reputationSpent":0,
+    "willpowerSpent": 0,
     "traits":[
         {"name":""}
     ],
@@ -55,37 +42,26 @@
         {"name":""}
     ],
     "powers":[
-        {
-            "type":"allomancy",
-            "name":"",
-            "metal":"",
-            "rating":0,
-            "charges":0,
-            "stunts":[
-                {
-                    "name":"",
-                    "effect":""
-                }
-            ]
-        }
+      {
+        "type":"allomancy",
+        "name":"",
+        "metal":"",
+        "rating":0,
+        "charges":0,
+        "stunts":[
+            {
+                "name":"",
+                "effect":""
+            }
+        ]
+      }
     ] 
-  },
-  "character": {
-    "templates": ["base", "attributes", "standings","resiliances","traits", "burdens","powers"],
-    "tragedy": "",
-    "destiny":"",
-    "secretsKnown":[
-        {
-            "details":""
-        }
-    ],
-    "advancements":0
   }
 },
 "Item": {
-  "types": ["props"],  
+  "types": ["prop"],  
   "props": {
-    "name": "",
+    "quantity": 0,
     "description": ""
   }
 }

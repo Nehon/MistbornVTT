@@ -1,0 +1,64 @@
+<div class="stats">
+    <div class="center flex-evenly">
+        <div class="column">
+           <div class="header">Attributes</div>
+           <div class="flexrow sub-header">
+                <div></div><div><span class="indicator">dice<span></div>                
+           </div>           
+           <div class="flexrow">
+                <div class="right"><span class="icon">a</span>Physique</div>
+                <div><input name="data.physique" type="text" value="{{actor.data.physique}}"/></div>                              
+           </div>           
+           <div class="flexrow">
+                <div class="right"><span class="icon">b</span>Charm</div>
+                <div><input name="data.charm" type="text" value="{{actor.data.charm}}"/></div>                
+           </div>           
+           <div class="flexrow">
+               <div class="right"><span class="icon">c</span>Wits</div>
+               <div><input name="data.wits" type="text" value="{{actor.data.wits}}"/></div>
+           </div>                
+        </div>
+        <div class="column">
+            <div class="header">Standing</div>
+            <div class="flexrow sub-header">
+                <div class="flex2"></div><div><span class="indicator">dice</span></div><div><span class="indicator">spent<span></div>                
+            </div>           
+            <div class="flexrow">
+                    <div class="right flex2">Resources</div>
+                    <div><input name="data.resources" type="text" value="{{actor.data.resources}}"/></div>                              
+                    <div><input class="input-spent" name="data.resourcesSpent" type="text" value="{{actor.data.resourcesSpent}}"/></div>                              
+            </div>           
+            <div class="flexrow">
+                    <div class="right flex2">Influence</div>
+                    <div><input name="data.influence" type="text" value="{{actor.data.influence}}"/></div>                
+                    <div><input class="input-spent" name="data.influenceSpent" type="text" value="{{actor.data.influenceSpent}}"/></div>                              
+            </div>           
+            <div class="flexrow">
+                <div class="right flex2">Sprit</div>
+                <div><input name="data.spirit" type="text" value="{{actor.data.spirit}}"/></div>
+                <div><input class="input-spent" name="data.spiritSpent" type="text" value="{{actor.data.spiritSpent}}"/></div>                              
+            </div>                     
+        </div>
+        <div class="column">
+            <div class="header">Resilience</div>    
+            <div class="flexrow sub-header">
+                <div class="flex2"></div><div><span class="indicator">score</span></div><div><span class="indicator">dmg<span></div>                
+            </div>           
+            <div class="flexrow">
+                    <div class="right flex2">Health</div>
+                    <div><input name="data.health" type="text" value="{{actor.data.health}}"/></div>                              
+                    <div><input class="input-spent" name="data.healthSpent" type="text" value="{{actor.data.healthSpent}}"/></div>                              
+            </div>           
+            <div class="flexrow">
+                    <div class="right flex2">Reputation</div>
+                    <div><input name="data.reputation" type="text" value="{{actor.data.reputation}}"/></div>                
+                    <div><input class="input-spent" name="data.reputationSpent" type="text" value="{{actor.data.reputationSpent}}"/></div>                              
+            </div>           
+            <div class="flexrow">
+                <div class="right flex2">Willpower</div>
+                <div><input name="data.willpower" type="text" value="{{actor.data.willpower}}"/></div>
+                <div><input class="input-spent" name="data.willpowerSpent" type="text" value="{{actor.data.willpowerSpent}}"/></div>                              
+            </div>           
+        </div>
+    </div>
+</div>
