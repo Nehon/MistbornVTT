@@ -2,12 +2,6 @@
 
 export const registerHandlebarsHelpers = function () {
 
-    // Handlebars.registerHelper('getEmbeddedItems', function (type, ids) {
-    //     if (ids) {
-    //         const items = Traversal.getItemsOfType(type);
-    //         return ids.map(id => items.find(i => i._id === id));
-    //     } else return null;
-    // });
 
     Handlebars.registerHelper('disabled', function (value) {
         return Boolean(value) ? "disabled" : "";

@@ -38,7 +38,13 @@
         <div class="tab" data-group="primary" data-tab="powers">
             {{> "systems/mistborn/templates/parts/character-powers.hbs"}}            
         </div>
-
+        <div class="tab equipment" data-group="primary" data-tab="equipment">
+            {{> "systems/mistborn/templates/parts/character-equipment.hbs"}}            
+        </div>
+        <div class="tab story" data-group="primary" data-tab="story">
+            {{editor content=data.story target="data.story" button=true owner=owner editable=editable}}
+        </div>
+    
         {{!-- Owned Items Tab --}}
         <div class="tab items" data-group="primary" data-tab="items">
             <ol class="item-list">

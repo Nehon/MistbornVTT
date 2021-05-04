@@ -4,11 +4,11 @@
           <div class="center flex4">Metal</div>
           <div class="center flex4">Type</div>
           <div class="center flex4">Rating</div>
-          <div class="flex1"></div>          
-        
+          <div class="center flex4">Charges</div>
+          <a class="power-control flex1 right" data-action="add"><i class="fas fa-plus"></i></a>
         </li>
         {{#each data.powers as |power key|}}
-        <li class="power flexrow" data-power="{{key}}">
+        <li class="power flexrow" data-power="{{key}}" style="margin-bottom:3px">
             <div class="center flex4">
               <select name="data.powers.{{@key}}.metal" data-type="String">
               {{#select power.metal}}
@@ -21,6 +21,8 @@
                   <option value="brass">Brass</option>
                   <option value="bronze">Bronze</option>
                   <option value="copper">Copper</option>
+                  <option value="atium">Atium</option>
+                  <option value="gold">Gold</option>
               {{/select}}
               </select>              
             </div>
@@ -38,7 +40,10 @@
               <input type="number" style="max-width:35px" name="data.powers.{{key}}.rating" value="{{power.rating}}" placeholder="Rating">
               <span class="icon rollable" data-dice="{{power.rating}}">a</span>
             </div>            
-            <a class="attribute-control flex1 right" data-action="delete"><i class="fas fa-trash"></i></a>
+            <div class="center flex4">
+              <input type="number" style="max-width:35px" name="data.powers.{{key}}.charges" value="{{power.charges}}" placeholder="Charges">              
+            </div>   
+            <a class="power-control flex1 right" data-action="delete" data-index="{{key}}"><i class="fas fa-trash"></i></a>
         </li>
         {{/each}}
     </ol>

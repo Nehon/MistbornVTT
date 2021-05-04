@@ -590,6 +590,67 @@
   border-radius: none;
 }
 
+.mistborn .item-sheet-header {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.mistborn .item-sheet-header .profile-img {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.mistborn .item-sheet-header .header-fields {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 250px;
+}
+
+.mistborn .item-sheet-header h1.item-name {
+  height: 50px;
+  padding: 0px;
+  margin: 5px 0;
+  text-align: center;
+  border-bottom: 0;
+  border: none;
+  background-color: unset;
+}
+
+.mistborn .item-sheet-header h1.item-name input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  max-height: 40px;
+  border-radius: unset;
+  border-bottom: 1px solid #999;
+}
+
+.mistborn .item-sheet-header input {
+  border: none;
+  background-color: unset;
+}
+
 .mistborn .powers select {
   font-family: "IMFellEnglishSC", Arial;
 }

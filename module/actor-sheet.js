@@ -1,4 +1,3 @@
-import { EntitySheetHelper } from "./helper.js";
 import { MistRoll } from "./mist-roll.js";
 
 /**
@@ -15,7 +14,7 @@ export class MistbornActorSheet extends ActorSheet {
       width: 850,
       height: 650,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      scrollY: [".biography", ".items", ".attributes"],
+      scrollY: [".story", ".equipment"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
@@ -40,6 +39,36 @@ export class MistbornActorSheet extends ActorSheet {
     // Handle rollable items and attributes
     html.find(".rollable").on("click", this._onRoll.bind(this));
    
+     // Delete Inventory Item
+    html.find('.power-control').click(ev => {
+      const li = $(ev.currentTarget);
+      const action = li.data("action");
+      let powers = Object.values(duplicate(this.object.data.data.powers));
+      switch(action){
+        case "add":          
+          powers.push({
+              type:"a",
+              metal:"",
+              rating:0,
+              charges:0,
+              stunts:[
+                  {
+                      name:"",
+                      effect:""
+                  }
+              ]
+          });          
+          break;
+        case "delete":{
+            const index = li.data("index");
+            powers.splice(index,1);
+         }
+          break;      
+      }
+      this._updateObject(ev,{data:{powers: powers}});
+      
+    });
+
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
@@ -50,18 +79,19 @@ export class MistbornActorSheet extends ActorSheet {
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(li.data("itemId"));
+      const id = li.data("itemId");
+      this.actor.deleteOwnedItem(id);
       li.slideUp(200, () => this.render(false));
     });
 
-    // Add draggable for macros.
-    html.find(".attributes a.attribute-roll").each((i, a) => {
-      a.setAttribute("draggable", true);
-      a.addEventListener("dragstart", ev => {
-        let dragData = ev.currentTarget.dataset;
-        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-      }, false);
-    });
+    // // Add draggable for macros.
+    // html.find(".attributes a.attribute-roll").each((i, a) => {
+    //   a.setAttribute("draggable", true);
+    //   a.addEventListener("dragstart", ev => {
+    //     let dragData = ev.currentTarget.dataset;
+    //     ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+    //   }, false);
+    // });
    
   }
 
@@ -80,10 +110,9 @@ export class MistbornActorSheet extends ActorSheet {
               },
               yes: { label: "Roll", callback: html => { 
                   const diceBonus = html.find("#diceBonus").val();
-                  const freeNudges = html.find("#freeNudges").val();
-                   //let r = new Roll(button.data('roll'), this.actor.getRollData());
+                  const freeNudges = html.find("#freeNudges").val();                   
                   let roll = new MistRoll(`${dice}+${diceBonus}.${freeNudges}`);
-                  roll.roll(this);
+                  roll.roll(this.object.getRollData());
               } }
           },
           close: ()=>{             
@@ -93,23 +122,6 @@ export class MistbornActorSheet extends ActorSheet {
       d.render(true);
   }
 
-  /* -------------------------------------------- */
-
-  /**
-   * Listen for roll buttons on items.
-   * @param {MouseEvent} event    The originating left click event
-   */
-  _onItemRoll(event) {
-    let button = $(event.currentTarget);
-    let r = new Roll(button.data('roll'), this.actor.getRollData());
-    const li = button.parents(".item");
-    const item = this.actor.getOwnedItem(li.data("itemId"));
-    r.roll().toMessage({
-      user: game.user._id,
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `<h2>${item.name}</h2><h3>${button.text()}</h3>`
-    });
-  }
 
   /* -------------------------------------------- */
 

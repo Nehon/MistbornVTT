@@ -1,0 +1,35 @@
+<section class="equipment">
+    <ol class="item-list">     
+        <li class="flexrow header" style="margin-bottom:3px">
+            <div class="center flex1">              
+            </div>
+            <div class="left flex2">
+              Name
+            </div>
+            <div class="left flex8">
+              Description
+            </div>                   
+            <div class="center flex1">
+              Quantity
+            </div>                   
+            <div class="center flex1"></div>    
+        </li> 
+        {{#each items as |item key|}}
+        <li class="item flexrow" data-item-id="{{item._id}}" style="margin-bottom:3px">
+            <div class="center flex1">
+              <img width="32" height="32" src={{item.img}}>
+            </div>
+            <div class="left flex2">
+              <a class="item-edit">{{item.name}}</a>
+            </div>
+            <div class="left flex8">
+              <a class="item-edit">{{safeString item.data.description}}</a>
+            </div>                   
+            <div class="center flex1">
+             <a class="item-edit">{{item.data.quantity}}</a>
+            </div>                   
+            <a class="item-delete flex1 right"><i class="fas fa-trash"></i></a>
+        </li>
+        {{/each}}
+    </ol>
+</section>

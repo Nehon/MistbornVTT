@@ -12,7 +12,8 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/mistborn/templates/parts/sheet-groups.html",
     "systems/mistborn/templates/parts/character-stats.hbs",
     "systems/mistborn/templates/parts/character-traits.hbs",
-    "systems/mistborn/templates/parts/character-powers.hbs"
+    "systems/mistborn/templates/parts/character-powers.hbs",
+    "systems/mistborn/templates/parts/character-equipment.hbs"
   ];
 
   // Load the template parts
